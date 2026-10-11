@@ -1,0 +1,145 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1456" height="1420" viewBox="0 0 1456 1420" font-family="Inter, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" data-view="rows">
+<rect x="0" y="0" width="1456" height="1420" fill="#ffffff"/>
+<text x="24.0" y="36.0" font-size="20" font-weight="700" fill="#1f2937" text-anchor="start" data-box="24.0 20.0 348.0 21.0">KlariticsAI: Architecture Flow</text>
+<rect x="136" y="92" width="1295.8" height="112.0" rx="12" fill="#f8fafc" stroke="#cbd5e1" data-tier="Callers"/>
+<text x="150.0" y="118.0" font-size="12" font-weight="600" fill="#4b5563" text-anchor="start" letter-spacing="0.8" data-box="150.0 108.4 67.0 12.6">CALLERS</text>
+<rect x="136" y="360" width="1295.8" height="126.0" rx="12" fill="#f8fafc" stroke="#cbd5e1" data-tier="Services"/>
+<text x="150.0" y="386.0" font-size="12" font-weight="600" fill="#4b5563" text-anchor="start" letter-spacing="0.8" data-box="150.0 376.4 76.6 12.6">SERVICES</text>
+<rect x="136" y="714" width="1295.8" height="144.0" rx="12" fill="#f8fafc" stroke="#cbd5e1" data-tier="Data"/>
+<text x="150.0" y="740.0" font-size="12" font-weight="600" fill="#4b5563" text-anchor="start" letter-spacing="0.8" data-box="150.0 730.4 37.9 12.6">DATA</text>
+<rect x="136" y="966" width="1295.8" height="126.0" rx="12" fill="#f8fafc" stroke="#cbd5e1" data-tier="Third parties"/>
+<text x="150.0" y="992.0" font-size="12" font-weight="600" fill="#4b5563" text-anchor="start" letter-spacing="0.8" data-box="150.0 982.4 125.0 12.6">THIRD PARTIES</text>
+<rect x="306.0" y="106.0" width="819.6" height="84.0" rx="12" fill="#eaf4ee" stroke="#7fb592" stroke-width="1.4" data-group="0"/>
+<text x="320.0" y="136.0" font-size="13" font-weight="700" fill="#374151" text-anchor="start" data-box="320.0 125.6 133.1 13.7" data-in="group:0">People and hosts</text>
+<rect x="306.0" y="374.0" width="310.2" height="98.0" rx="12" fill="#eef0fb" stroke="#8e97d6" stroke-width="1.4" data-group="1"/>
+<text x="320.0" y="404.0" font-size="13" font-weight="700" fill="#374151" text-anchor="start" data-box="320.0 393.6 108.2 13.7" data-in="group:1">api container</text>
+<rect x="640.2" y="374.0" width="450.2" height="84.0" rx="12" fill="#eef0fb" stroke="#8e97d6" stroke-width="1.4" data-group="2"/>
+<text x="654.2" y="404.0" font-size="13" font-weight="700" fill="#374151" text-anchor="start" data-box="654.2 393.6 108.2 13.7" data-in="group:2">mcp container</text>
+<rect x="1114.3" y="374.0" width="293.5" height="98.0" rx="12" fill="#eef0fb" stroke="#8e97d6" stroke-width="1.4" data-group="3"/>
+<text x="1128.3" y="404.0" font-size="13" font-weight="700" fill="#374151" text-anchor="start" data-box="1128.3 393.6 91.5 13.7" data-in="group:3">Image build</text>
+<rect x="306.0" y="728.0" width="827.0" height="116.0" rx="12" fill="#fbf3e4" stroke="#d4a85a" stroke-width="1.4" data-group="4"/>
+<text x="320.0" y="758.0" font-size="13" font-weight="700" fill="#374151" text-anchor="start" data-box="320.0 747.6 41.6 13.7" data-in="group:4">Files</text>
+<rect x="306.0" y="980.0" width="448.1" height="98.0" rx="12" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.4" stroke-dasharray="6 4" data-group="5"/>
+<text x="320.0" y="1010.0" font-size="13" font-weight="700" fill="#374151" text-anchor="start" data-box="320.0 999.6 66.6 13.7" data-in="group:5">External</text>
+<g data-node="analyst_user"><rect x="467.1" y="120.0" width="287.0" height="56.0" rx="8" fill="#ffffff" stroke="#5b6b8c" stroke-width="1.4"/>
+<text x="610.6" y="146.0" font-size="14" font-weight="700" fill="#1f2937" text-anchor="middle" data-box="494.1 134.8 233.0 14.7" data-in="node:analyst_user">Product manager or analyst</text>
+<text x="610.6" y="162.0" font-size="11" font-weight="400" fill="#4b5563" text-anchor="middle" data-box="540.4 153.2 140.4 11.6" data-in="node:analyst_user">HTTP client or browser</text>
+</g>
+<g data-node="mcp_host"><rect x="772.1" y="120.0" width="160.0" height="56.0" rx="8" fill="#ffffff" stroke="#5b6b8c" stroke-width="1.4"/>
+<text x="852.1" y="146.0" font-size="14" font-weight="700" fill="#1f2937" text-anchor="middle" data-box="816.2 134.8 71.7 14.7" data-in="node:mcp_host">MCP host</text>
+<text x="852.1" y="162.0" font-size="11" font-weight="400" fill="#4b5563" text-anchor="middle" data-box="807.4 153.2 89.3 11.6" data-in="node:mcp_host">Any MCP client</text>
+</g>
+<g data-node="cli"><rect x="950.1" y="120.0" width="161.5" height="56.0" rx="8" fill="#ffffff" stroke="#5b6b8c" stroke-width="1.4"/>
+<text x="1030.8" y="146.0" font-size="14" font-weight="700" fill="#1f2937" text-anchor="middle" data-box="977.1 134.8 107.5 14.7" data-in="node:cli">make ask CLI</text>
+<text x="1030.8" y="162.0" font-size="11" font-weight="400" fill="#4b5563" text-anchor="middle" data-box="970.2 153.2 121.2 11.6" data-in="node:cli">python -m app.agent</text>
+</g>
+<g data-node="api"><rect x="442.2" y="388.0" width="160.0" height="70.0" rx="8" fill="#ffffff" stroke="#5b6b8c" stroke-width="1.4"/>
+<text x="522.2" y="414.0" font-size="14" font-weight="700" fill="#1f2937" text-anchor="middle" data-box="472.9 402.8 98.6 14.7" data-in="node:api">Analyst API</text>
+<text x="522.2" y="430.0" font-size="11" font-weight="400" fill="#4b5563" text-anchor="middle" data-box="458.4 421.2 127.6 11.6" data-in="node:api">FastAPI, gunicorn, 2</text>
+<text x="522.2" y="444.0" font-size="11" font-weight="400" fill="#4b5563" text-anchor="middle" data-box="499.8 435.2 44.7 11.6" data-in="node:api">workers</text>
+</g>
+<g data-node="mcp"><rect x="776.3" y="388.0" width="300.0" height="56.0" rx="8" fill="#ffffff" stroke="#5b6b8c" stroke-width="1.4"/>
+<text x="926.3" y="414.0" font-size="14" font-weight="700" fill="#1f2937" text-anchor="middle" data-box="791.9 402.8 268.8 14.7" data-in="node:mcp">klaritics-analytics MCP server</text>
+<text x="926.3" y="430.0" font-size="11" font-weight="400" fill="#4b5563" text-anchor="middle" data-box="830.6 421.2 191.4 11.6" data-in="node:mcp">MCP SDK, streamable HTTP :8090</text>
+</g>
+<g data-node="seeder"><rect x="1233.8" y="388.0" width="160.0" height="70.0" rx="8" fill="#ffffff" stroke="#5b6b8c" stroke-width="1.4"/>
+<text x="1313.8" y="414.0" font-size="14" font-weight="700" fill="#1f2937" text-anchor="middle" data-box="1287.0 402.8 53.8 14.7" data-in="node:seeder">Seeder</text>
+<text x="1313.8" y="430.0" font-size="11" font-weight="400" fill="#4b5563" text-anchor="middle" data-box="1253.2 421.2 121.2 11.6" data-in="node:seeder">python -m app.seed,</text>
+<text x="1313.8" y="444.0" font-size="11" font-weight="400" fill="#4b5563" text-anchor="middle" data-box="1291.5 435.2 44.7 11.6" data-in="node:seeder">seed 42</text>
+</g>
+<g data-node="events"><rect x="375.6" y="742.0" width="160.0" height="70.0" rx="8" fill="#e6efff" stroke="#5b6b8c" stroke-width="1.4"/>
+<text x="455.6" y="768.0" font-size="14" font-weight="700" fill="#1f2937" text-anchor="middle" data-box="406.3 756.8 98.6 14.7" data-in="node:events">Event store</text>
+<text x="455.6" y="784.0" font-size="11" font-weight="400" fill="#4b5563" text-anchor="middle" data-box="417.3 775.2 76.6 11.6" data-in="node:events">DuckDB file,</text>
+<text x="455.6" y="798.0" font-size="11" font-weight="400" fill="#4b5563" text-anchor="middle" data-box="391.8 789.2 127.6 11.6" data-in="node:events">read-only at runtime</text>
+<g data-icon="store"><path d="M507.6 754 v12 a9 4 0 0 0 18 0 v-12" fill="#dbeafe" stroke="#3b6fb6" stroke-width="1.2"/><ellipse cx="516.6" cy="754" rx="9" ry="4" fill="#eff6ff" stroke="#3b6fb6" stroke-width="1.2"/></g>
+</g>
+<g data-node="ledger"><rect x="553.6" y="742.0" width="161.5" height="88.0" rx="8" fill="#e6efff" stroke="#5b6b8c" stroke-width="1.4"/>
+<text x="634.4" y="768.0" font-size="14" font-weight="700" fill="#1f2937" text-anchor="middle" data-box="612.0 756.8 44.8 14.7" data-in="node:ledger">Spend</text>
+<text x="634.4" y="786.0" font-size="14" font-weight="700" fill="#1f2937" text-anchor="middle" data-box="607.5 774.8 53.8 14.7" data-in="node:ledger">ledger</text>
+<text x="634.4" y="802.0" font-size="11" font-weight="400" fill="#4b5563" text-anchor="middle" data-box="615.2 793.2 38.3 11.6" data-in="node:ledger">JSONL,</text>
+<text x="634.4" y="816.0" font-size="11" font-weight="400" fill="#4b5563" text-anchor="middle" data-box="586.5 807.2 95.7 11.6" data-in="node:ledger">LLM_LEDGER_PATH</text>
+<g data-icon="store"><path d="M687.12 754 v12 a9 4 0 0 0 18 0 v-12" fill="#dbeafe" stroke="#3b6fb6" stroke-width="1.2"/><ellipse cx="696.12" cy="754" rx="9" ry="4" fill="#eff6ff" stroke="#3b6fb6" stroke-width="1.2"/></g>
+</g>
+<g data-node="reports"><rect x="733.1" y="742.0" width="170.5" height="70.0" rx="8" fill="#e6efff" stroke="#5b6b8c" stroke-width="1.4"/>
+<text x="818.4" y="768.0" font-size="14" font-weight="700" fill="#1f2937" text-anchor="middle" data-box="760.1 756.8 116.5 14.7" data-in="node:reports">Saved reports</text>
+<text x="818.4" y="784.0" font-size="11" font-weight="400" fill="#4b5563" text-anchor="middle" data-box="783.3 775.2 70.2 11.6" data-in="node:reports">JSON files,</text>
+<text x="818.4" y="798.0" font-size="11" font-weight="400" fill="#4b5563" text-anchor="middle" data-box="783.3 789.2 70.2 11.6" data-in="node:reports">REPORTS_DIR</text>
+<g data-icon="store"><path d="M875.6 754 v12 a9 4 0 0 0 18 0 v-12" fill="#dbeafe" stroke="#3b6fb6" stroke-width="1.2"/><ellipse cx="884.6" cy="754" rx="9" ry="4" fill="#eff6ff" stroke="#3b6fb6" stroke-width="1.2"/></g>
+</g>
+<g data-node="recordings"><rect x="921.6" y="742.0" width="197.4" height="56.0" rx="8" fill="#e6efff" stroke="#5b6b8c" stroke-width="1.4"/>
+<text x="1020.3" y="768.0" font-size="14" font-weight="700" fill="#1f2937" text-anchor="middle" data-box="948.6 756.8 143.4 14.7" data-in="node:recordings">Model recordings</text>
+<text x="1020.3" y="784.0" font-size="11" font-weight="400" fill="#4b5563" text-anchor="middle" data-box="943.7 775.2 153.1 11.6" data-in="node:recordings">JSON, LLM_RECORDINGS_DIR</text>
+<g data-icon="store"><path d="M1090.96 754 v12 a9 4 0 0 0 18 0 v-12" fill="#dbeafe" stroke="#3b6fb6" stroke-width="1.2"/><ellipse cx="1099.96" cy="754" rx="9" ry="4" fill="#eff6ff" stroke="#3b6fb6" stroke-width="1.2"/></g>
+</g>
+<g data-node="openrouter"><rect x="400.6" y="994.0" width="160.0" height="70.0" rx="8" fill="#ffffff" stroke="#6b7280" stroke-width="1.4" stroke-dasharray="5 4"/>
+<text x="480.6" y="1020.0" font-size="14" font-weight="700" fill="#1f2937" text-anchor="middle" data-box="435.8 1008.8 89.6 14.7" data-in="node:openrouter">OpenRouter</text>
+<text x="480.6" y="1036.0" font-size="11" font-weight="400" fill="#4b5563" text-anchor="middle" data-box="426.3 1027.2 108.5 11.6" data-in="node:openrouter">Claude Haiku 4.5,</text>
+<text x="480.6" y="1050.0" font-size="11" font-weight="400" fill="#4b5563" text-anchor="middle" data-box="464.6 1041.2 31.9 11.6" data-in="node:openrouter">HTTPS</text>
+</g>
+<g data-node="cdn"><rect x="578.6" y="994.0" width="161.5" height="70.0" rx="8" fill="#ffffff" stroke="#6b7280" stroke-width="1.4" stroke-dasharray="5 4"/>
+<text x="659.3" y="1020.0" font-size="14" font-weight="700" fill="#1f2937" text-anchor="middle" data-box="605.6 1008.8 107.5 14.7" data-in="node:cdn">jsDelivr CDN</text>
+<text x="659.3" y="1036.0" font-size="11" font-weight="400" fill="#4b5563" text-anchor="middle" data-box="608.3 1027.2 102.1 11.6" data-in="node:cdn">vega, vega-lite,</text>
+<text x="659.3" y="1050.0" font-size="11" font-weight="400" fill="#4b5563" text-anchor="middle" data-box="627.4 1041.2 63.8 11.6" data-in="node:cdn">vega-embed</text>
+</g>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#475569"/></marker></defs>
+<path d="M562.8 176.0 L562.8 258.0 L522.2 258.0 L522.2 388.0" fill="none" stroke="#475569" stroke-width="1.4" marker-end="url(#arrow)" data-edge="1" data-from="analyst_user" data-to="api"/>
+<path d="M852.1 176.0 L852.1 282.0 L926.3 282.0 L926.3 388.0" fill="none" stroke="#475569" stroke-width="1.4" marker-end="url(#arrow)" data-edge="2" data-from="mcp_host" data-to="mcp"/>
+<path d="M1003.9 176.0 L1003.9 306.0 L32.0 306.0 L32.0 660.0 L471.6 660.0 L471.6 742.0" fill="none" stroke="#475569" stroke-width="1.4" marker-end="url(#arrow)" data-edge="3" data-from="cli" data-to="events"/>
+<path d="M1313.8 458.0 L1313.8 684.0 L503.6 684.0 L503.6 742.0" fill="none" stroke="#475569" stroke-width="1.4" stroke-dasharray="2 4" marker-end="url(#arrow)" data-edge="4" data-from="seeder" data-to="events"/>
+<path d="M468.8 458.0 L468.8 540.0 L407.6 540.0 L407.6 742.0" fill="none" stroke="#475569" stroke-width="1.4" marker-end="url(#arrow)" data-edge="5" data-from="api" data-to="events"/>
+<path d="M926.3 444.0 L926.3 636.0 L439.6 636.0 L439.6 742.0" fill="none" stroke="#475569" stroke-width="1.4" marker-end="url(#arrow)" data-edge="6" data-from="mcp" data-to="events"/>
+<path d="M522.2 458.0 L522.2 564.0 L634.4 564.0 L634.4 742.0" fill="none" stroke="#475569" stroke-width="1.4" marker-end="url(#arrow)" data-edge="7" data-from="api" data-to="ledger"/>
+<path d="M548.8 458.0 L548.8 588.0 L818.4 588.0 L818.4 742.0" fill="none" stroke="#475569" stroke-width="1.4" marker-end="url(#arrow)" data-edge="8" data-from="api" data-to="reports"/>
+<path d="M575.5 458.0 L575.5 612.0 L1020.3 612.0 L1020.3 742.0" fill="none" stroke="#475569" stroke-width="1.4" marker-end="url(#arrow)" data-edge="9" data-from="api" data-to="recordings"/>
+<path d="M495.5 458.0 L495.5 516.0 L56.0 516.0 L56.0 912.0 L453.9 912.0 L453.9 994.0" fill="none" stroke="#475569" stroke-width="1.4" marker-end="url(#arrow)" data-edge="10" data-from="api" data-to="openrouter"/>
+<path d="M1057.8 176.0 L1057.8 330.0 L80.0 330.0 L80.0 936.0 L507.2 936.0 L507.2 994.0" fill="none" stroke="#475569" stroke-width="1.4" marker-end="url(#arrow)" data-edge="11" data-from="cli" data-to="openrouter"/>
+<path d="M658.4 176.0 L658.4 234.0 L104.0 234.0 L104.0 888.0 L659.3 888.0 L659.3 994.0" fill="none" stroke="#475569" stroke-width="1.4" marker-end="url(#arrow)" data-edge="12" data-from="analyst_user" data-to="cdn"/>
+<g data-badge="1" data-box="532.5 248.0 20 20"><circle cx="542.5" cy="258.0" r="10" fill="#ffffff" stroke="#475569" stroke-width="1.3"/><text x="542.5" y="262.0" font-size="11" font-weight="700" fill="#1f2937" text-anchor="middle">1</text></g>
+<g data-badge="2" data-box="879.2 272.0 20 20"><circle cx="889.2" cy="282.0" r="10" fill="#ffffff" stroke="#475569" stroke-width="1.3"/><text x="889.2" y="286.0" font-size="11" font-weight="700" fill="#1f2937" text-anchor="middle">2</text></g>
+<g data-badge="3" data-box="499.0 296.0 20 20"><circle cx="509.0" cy="306.0" r="10" fill="#ffffff" stroke="#475569" stroke-width="1.3"/><text x="509.0" y="310.0" font-size="11" font-weight="700" fill="#1f2937" text-anchor="middle">3</text></g>
+<g data-badge="4" data-box="898.7 674.0 20 20"><circle cx="908.7" cy="684.0" r="10" fill="#ffffff" stroke="#475569" stroke-width="1.3"/><text x="908.7" y="688.0" font-size="11" font-weight="700" fill="#1f2937" text-anchor="middle">4</text></g>
+<g data-badge="5" data-box="428.2 530.0 20 20"><circle cx="438.2" cy="540.0" r="10" fill="#ffffff" stroke="#475569" stroke-width="1.3"/><text x="438.2" y="544.0" font-size="11" font-weight="700" fill="#1f2937" text-anchor="middle">5</text></g>
+<g data-badge="6" data-box="673.0 626.0 20 20"><circle cx="683.0" cy="636.0" r="10" fill="#ffffff" stroke="#475569" stroke-width="1.3"/><text x="683.0" y="640.0" font-size="11" font-weight="700" fill="#1f2937" text-anchor="middle">6</text></g>
+<g data-badge="7" data-box="580.3 554.0 20 20"><circle cx="590.3" cy="564.0" r="10" fill="#ffffff" stroke="#475569" stroke-width="1.3"/><text x="590.3" y="568.0" font-size="11" font-weight="700" fill="#1f2937" text-anchor="middle">7</text></g>
+<g data-badge="8" data-box="673.6 578.0 20 20"><circle cx="683.6" cy="588.0" r="10" fill="#ffffff" stroke="#475569" stroke-width="1.3"/><text x="683.6" y="592.0" font-size="11" font-weight="700" fill="#1f2937" text-anchor="middle">8</text></g>
+<g data-badge="9" data-box="787.9 602.0 20 20"><circle cx="797.9" cy="612.0" r="10" fill="#ffffff" stroke="#475569" stroke-width="1.3"/><text x="797.9" y="616.0" font-size="11" font-weight="700" fill="#1f2937" text-anchor="middle">9</text></g>
+<g data-badge="10" data-box="265.7 506.0 20 20"><circle cx="275.7" cy="516.0" r="10" fill="#ffffff" stroke="#475569" stroke-width="1.3"/><text x="275.7" y="520.0" font-size="11" font-weight="700" fill="#1f2937" text-anchor="middle">10</text></g>
+<g data-badge="11" data-box="558.9 320.0 20 20"><circle cx="568.9" cy="330.0" r="10" fill="#ffffff" stroke="#475569" stroke-width="1.3"/><text x="568.9" y="334.0" font-size="11" font-weight="700" fill="#1f2937" text-anchor="middle">11</text></g>
+<g data-badge="12" data-box="371.2 224.0 20 20"><circle cx="381.2" cy="234.0" r="10" fill="#ffffff" stroke="#475569" stroke-width="1.3"/><text x="381.2" y="238.0" font-size="11" font-weight="700" fill="#1f2937" text-anchor="middle">12</text></g>
+<line x1="24" y1="1144.0" x2="1431.8" y2="1144.0" stroke="#e5e7eb"/>
+<text x="24.0" y="1170.0" font-size="12" font-weight="600" fill="#4b5563" text-anchor="start" letter-spacing="0.8" data-box="24.0 1160.4 270.2 12.6">WHAT EACH CONNECTION CARRIES</text>
+<g data-legend="1"><circle cx="34.0" cy="1192" r="9" fill="#ffffff" stroke="#475569"/><text x="34.0" y="1196" font-size="10" font-weight="700" fill="#1f2937" text-anchor="middle">1</text></g>
+<text x="52.0" y="1196.0" font-size="12" font-weight="400" fill="#1f2937" text-anchor="start" data-box="52.0 1186.4 647.3 12.6">Product manager or analyst to Analyst API: Questions and reports, JSON and HTML over HTTP, no</text>
+<text x="52.0" y="1212.0" font-size="12" font-weight="400" fill="#1f2937" text-anchor="start" data-box="52.0 1202.4 167.0 12.6">auth (request and reply)</text>
+<g data-legend="2"><circle cx="34.0" cy="1232" r="9" fill="#ffffff" stroke="#475569"/><text x="34.0" y="1236" font-size="10" font-weight="700" fill="#1f2937" text-anchor="middle">2</text></g>
+<text x="52.0" y="1236.0" font-size="12" font-weight="400" fill="#1f2937" text-anchor="start" data-box="52.0 1226.4 633.4 12.6">MCP host to klaritics-analytics MCP server: MCP tool calls with a bearer token (request and</text>
+<text x="52.0" y="1252.0" font-size="12" font-weight="400" fill="#1f2937" text-anchor="start" data-box="52.0 1242.4 41.8 12.6">reply)</text>
+<g data-legend="3"><circle cx="34.0" cy="1272" r="9" fill="#ffffff" stroke="#475569"/><text x="34.0" y="1276" font-size="10" font-weight="700" fill="#1f2937" text-anchor="middle">3</text></g>
+<text x="52.0" y="1276.0" font-size="12" font-weight="400" fill="#1f2937" text-anchor="start" data-box="52.0 1266.4 570.7 12.6">make ask CLI to Event store: Analyst in-process, read-only SQL (request and reply)</text>
+<g data-legend="4"><circle cx="34.0" cy="1296" r="9" fill="#ffffff" stroke="#475569"/><text x="34.0" y="1300" font-size="10" font-weight="700" fill="#1f2937" text-anchor="middle">4</text></g>
+<text x="52.0" y="1300.0" font-size="12" font-weight="400" fill="#1f2937" text-anchor="start" data-box="52.0 1290.4 584.6 12.6">Seeder to Event store: Writes the store once at image build (bulk or scheduled data)</text>
+<g data-legend="5"><circle cx="34.0" cy="1320" r="9" fill="#ffffff" stroke="#475569"/><text x="34.0" y="1324" font-size="10" font-weight="700" fill="#1f2937" text-anchor="middle">5</text></g>
+<text x="52.0" y="1324.0" font-size="12" font-weight="400" fill="#1f2937" text-anchor="start" data-box="52.0 1314.4 661.2 12.6">Analyst API to Event store: Read-only SQL through the in-process MCP server (request and reply)</text>
+<g data-legend="6"><circle cx="34.0" cy="1344" r="9" fill="#ffffff" stroke="#475569"/><text x="34.0" y="1348" font-size="10" font-weight="700" fill="#1f2937" text-anchor="middle">6</text></g>
+<text x="52.0" y="1348.0" font-size="12" font-weight="400" fill="#1f2937" text-anchor="start" data-box="52.0 1338.4 556.8 12.6">klaritics-analytics MCP server to Event store: Read-only SQL (request and reply)</text>
+<g data-legend="7"><circle cx="737.92" cy="1192" r="9" fill="#ffffff" stroke="#475569"/><text x="737.92" y="1196" font-size="10" font-weight="700" fill="#1f2937" text-anchor="middle">7</text></g>
+<text x="755.9" y="1196.0" font-size="12" font-weight="400" fill="#1f2937" text-anchor="start" data-box="755.9 1186.4 556.8 12.6">Analyst API to Spend ledger: Appends one line per model call (request and reply)</text>
+<g data-legend="8"><circle cx="737.92" cy="1216" r="9" fill="#ffffff" stroke="#475569"/><text x="737.92" y="1220" font-size="10" font-weight="700" fill="#1f2937" text-anchor="middle">8</text></g>
+<text x="755.9" y="1220.0" font-size="12" font-weight="400" fill="#1f2937" text-anchor="start" data-box="755.9 1210.4 508.1 12.6">Analyst API to Saved reports: Saves and reads reports (request and reply)</text>
+<g data-legend="9"><circle cx="737.92" cy="1240" r="9" fill="#ffffff" stroke="#475569"/><text x="737.92" y="1244" font-size="10" font-weight="700" fill="#1f2937" text-anchor="middle">9</text></g>
+<text x="755.9" y="1244.0" font-size="12" font-weight="400" fill="#1f2937" text-anchor="start" data-box="755.9 1234.4 598.6 12.6">Analyst API to Model recordings: Reads in replay, writes in record (request and reply)</text>
+<g data-legend="10"><circle cx="737.92" cy="1264" r="9" fill="#ffffff" stroke="#475569"/><text x="737.92" y="1268" font-size="10" font-weight="700" fill="#1f2937" text-anchor="middle">10</text></g>
+<text x="755.9" y="1268.0" font-size="12" font-weight="400" fill="#1f2937" text-anchor="start" data-box="755.9 1258.4 598.6 12.6">Analyst API to OpenRouter: Chat completions in live or record mode (request and reply)</text>
+<g data-legend="11"><circle cx="737.92" cy="1288" r="9" fill="#ffffff" stroke="#475569"/><text x="737.92" y="1292" font-size="10" font-weight="700" fill="#1f2937" text-anchor="middle">11</text></g>
+<text x="755.9" y="1292.0" font-size="12" font-weight="400" fill="#1f2937" text-anchor="start" data-box="755.9 1282.4 542.9 12.6">make ask CLI to OpenRouter: Chat completions from make ask (request and reply)</text>
+<g data-legend="12"><circle cx="737.92" cy="1312" r="9" fill="#ffffff" stroke="#475569"/><text x="737.92" y="1316" font-size="10" font-weight="700" fill="#1f2937" text-anchor="middle">12</text></g>
+<text x="755.9" y="1316.0" font-size="12" font-weight="400" fill="#1f2937" text-anchor="start" data-box="755.9 1306.4 626.4 12.6">Product manager or analyst to jsDelivr CDN: Browser loads chart scripts for an HTML report</text>
+<text x="755.9" y="1332.0" font-size="12" font-weight="400" fill="#1f2937" text-anchor="start" data-box="755.9 1322.4 132.2 12.6">(request and reply)</text>
+<line x1="24" y1="1384" x2="58" y2="1384" stroke="#475569" stroke-width="1.4"/>
+<text x="66.0" y="1388.0" font-size="11" font-weight="400" fill="#4b5563" text-anchor="start" data-box="66.0 1379.2 108.5 11.6">request and reply</text>
+<line x1="202.45999999999998" y1="1384" x2="236.45999999999998" y2="1384" stroke="#475569" stroke-width="1.4" stroke-dasharray="7 5"/>
+<text x="244.5" y="1388.0" font-size="11" font-weight="400" fill="#4b5563" text-anchor="start" data-box="244.5 1379.2 102.1 11.6">event or message</text>
+<line x1="374.53999999999996" y1="1384" x2="408.53999999999996" y2="1384" stroke="#475569" stroke-width="1.4" stroke-dasharray="2 4"/>
+<text x="416.5" y="1388.0" font-size="11" font-weight="400" fill="#4b5563" text-anchor="start" data-box="416.5 1379.2 140.4 11.6">bulk or scheduled data</text>
+<text x="584.9" y="1388.0" font-size="11" font-weight="400" fill="#4b5563" text-anchor="start" data-box="584.9 1379.2 765.6 11.6">a box inside a service is a module; the cylinder marks a service that owns its data; a dashed box is outside our control</text>
+</svg>

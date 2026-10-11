@@ -1,0 +1,15 @@
+{
+  "project": "KlariticsAI",
+  "group": "KlariticsAI",
+  "repos": [
+    {
+      "name": "KlariticsAIAnalyst",
+      "path": ".",
+      "git_path": "vijaylingoju/klariticsai",
+      "stack": "python-api",
+      "stack_note": "python-api with the Postgres layer removed; DuckDB instead (ADR-0001, ADR-0002)",
+      "tech": "Python 3.14, FastAPI, Pydantic v2, DuckDB, MCP SDK, structlog, OpenTelemetry, uv",
+      "responsibility": "The analyst API, the MCP analytics server, the seeder and the eval harness; owns the event store"
+    }
+  ]
+}
