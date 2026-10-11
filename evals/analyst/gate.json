@@ -1,0 +1,7 @@
+{
+  "root_cause_accuracy": {"min": 0.87, "why": "13 of 15, the bar proposed in Q-001; applied to all 45 cases"},
+  "numeric_accuracy": {"min": 0.95},
+  "intent_accuracy": {"min": 0.9},
+  "max_tool_calls": {"max": 8},
+  "errors": {"max": 0, "why": "a missing recording or a crash is a failed run, never a skipped case"}
+}

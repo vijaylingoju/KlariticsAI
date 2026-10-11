@@ -30,3 +30,6 @@ build/
 .env
 .cache/
 data/
+
+# Eval runs; an accepted baseline is copied to docs/genai/evals.md
+evals/analyst/results/

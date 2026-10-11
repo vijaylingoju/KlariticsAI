@@ -1,0 +1,25 @@
+Task Description: Klaritics AI Analyst
+
+Build an AI-powered analytics agent that enables product managers and analysts to investigate product metrics, identify root causes of changes, and generate evidence-backed insights using Klaritics product analytics data.
+
+The system will use a seeded event dataset stored in DuckDB or PostgreSQL and expose five core analytics capabilities through an MCP server: event count, funnel analysis, retention analysis, segment comparison, and event listing.
+
+Users can ask questions in natural language, such as "Why did Day-7 retention drop for Android users last week?" The agent should select the appropriate analyses, execute them through tools, and drill down across dimensions such as app version, operating system, country, device, and acquisition source to identify the segments responsible for the change.
+
+To prevent the agent from wandering or producing unsupported conclusions, implement a bounded investigation workflow that stops after eight tool calls. If the agent cannot identify the cause within this limit, it should fall back to a deterministic analysis plan that compares the metric and evaluates contributions across dimensions. All numerical claims must be validated against tool results in code, and unsupported numbers must be removed.
+
+The final response should include a concise narrative explaining the findings, relevant charts, a contribution table highlighting the most influential segments, and a complete record of the tool calls and their parameters so the analysis can be reproduced. If a requested event is not tracked, the agent must explicitly state that it is not tracked. Analysts should also be able to save validated answers as reports.
+
+All LLM requests must go through a centralized OpenRouter gateway using Claude Haiku 4.5, with a maximum of 600 output tokens per call. The gateway must track token usage and costs, enforce a USD 8 spending limit, and support replaying recorded model responses in tests so CI does not make live LLM calls.
+
+Seed 20,000 users and 60 days of events, including three planted scenarios: a funnel conversion drop associated with a specific app version, a retention decline in a particular country, and a campaign-driven lift. Implement 15 evaluation questions to measure whether the agent identifies the planted causes and whether its numerical claims are accurate.
+
+Deliverables: A reusable MCP analytics server, an AI agent with bounded investigation and fallback logic, evidence-validation guardrails, visual and reproducible analysis reports, and an evaluation suite measuring root-cause accuracy and numerical correctness.
+
+Constraints: Use only the capped OpenRouter API, DuckDB or PostgreSQL in Docker, and the seeded dataset. Writing back to Klaritics, path analysis, and campaign creation are out of scope. Path analysis and top-properties analysis may be implemented as stretch goals.
+
+Owner direction (Vijay, project thread, 2026-10-11):
+- The system must act on the intent of the user, not on keyword matching in the query.
+- It must be built as a production-ready system and tested properly with multiple test cases.
+- Development is spec driven, with rapid tests that ensure reliable answers.
+- The deadline has passed: work on a strict time basis and focus on product quality.

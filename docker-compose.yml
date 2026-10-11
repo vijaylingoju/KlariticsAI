@@ -1,0 +1,30 @@
+# The API and the MCP server share one image. The image seeds its own read-only
+# event store at build time (seed 42); only the spend ledger and saved reports
+# need a volume.
+services:
+  api:
+    build: .
+    ports: ["${PORT:-8080}:8080"]
+    environment:
+      LOG_FORMAT: json
+      LLM_MODE: ${LLM_MODE:-live}
+      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:-}
+      LLM_BUDGET_USD: ${LLM_BUDGET_USD:-8}
+      LLM_LEDGER_PATH: /app/data/state/llm_ledger.jsonl
+      REPORTS_DIR: /app/data/state/reports
+    # The spend ledger and saved reports outlive the container.
+    volumes: [analyst-data:/app/data/state]
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8080/readyz')"]
+      interval: 10s
+      retries: 5
+  mcp:
+    build: .
+    command: ["python", "-m", "app.mcp_server", "--transport", "http"]
+    ports: ["${MCP_HTTP_PORT:-8090}:8090"]
+    environment:
+      LOG_FORMAT: json
+      # Required: the HTTP transport refuses to start without it. Set it in .env.
+      MCP_HTTP_TOKEN: ${MCP_HTTP_TOKEN:?set MCP_HTTP_TOKEN in .env}
+volumes:
+  analyst-data: {}
