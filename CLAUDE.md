@@ -24,6 +24,11 @@ the branch state and the user's last requests after compaction.
 Permissions are in `.claude/settings.json`; `.claude/settings.local.json` may
 add to them but must not loosen the deny list.
 
+Every feature runs through Bearing `autopilot "<requirement>"`: it orders the
+stages (prd, stories, decide, architecture, lld, test_cases, build, review,
+dod, mr) and checks each from the files on disk. Never write a stage's
+document freehand. Before any merge request, `definition-of-done`.
+
 Plan mode for anything over three files or touching a schema, contract or
 auth. On a third failed approach, stop and say so. Bound shell output with
 `| tail -40`.

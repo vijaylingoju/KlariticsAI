@@ -1,0 +1,92 @@
+{
+  "project": "KlariticsAI",
+  "version": 1,
+  "system_diagram": {
+    "tiers": [
+      {
+        "name": "Callers",
+        "groups": [
+          {
+            "name": "People and hosts",
+            "kind": "client",
+            "nodes": [
+              {"id": "analyst_user", "name": "Product manager or analyst", "kind": "app", "tech": "HTTP client or browser"},
+              {"id": "mcp_host", "name": "MCP host", "kind": "app", "tech": "Any MCP client"},
+              {"id": "cli", "name": "make ask CLI", "kind": "app", "tech": "python -m app.agent"}
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Services",
+        "groups": [
+          {
+            "name": "api container",
+            "kind": "services",
+            "nodes": [
+              {"id": "api", "name": "Analyst API", "kind": "service", "tech": "FastAPI, gunicorn, 2 workers",
+               "modules": ["api", "agent", "guardrails", "reports", "llm", "mcp_server (in-process)", "analytics"]}
+            ]
+          },
+          {
+            "name": "mcp container",
+            "kind": "services",
+            "nodes": [
+              {"id": "mcp", "name": "klaritics-analytics MCP server", "kind": "service", "tech": "MCP SDK, streamable HTTP :8090",
+               "modules": ["mcp_server", "analytics"]}
+            ]
+          },
+          {
+            "name": "Image build",
+            "kind": "services",
+            "nodes": [
+              {"id": "seeder", "name": "Seeder", "kind": "job", "tech": "python -m app.seed, seed 42"}
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Data",
+        "groups": [
+          {
+            "name": "Files",
+            "kind": "data",
+            "nodes": [
+              {"id": "events", "name": "Event store", "kind": "store", "tech": "DuckDB file, read-only at runtime", "owns_store": true},
+              {"id": "ledger", "name": "Spend ledger", "kind": "store", "tech": "JSONL, LLM_LEDGER_PATH"},
+              {"id": "reports", "name": "Saved reports", "kind": "store", "tech": "JSON files, REPORTS_DIR"},
+              {"id": "recordings", "name": "Model recordings", "kind": "store", "tech": "JSON, LLM_RECORDINGS_DIR"}
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Third parties",
+        "groups": [
+          {
+            "name": "External",
+            "kind": "external",
+            "nodes": [
+              {"id": "openrouter", "name": "OpenRouter", "kind": "external", "tech": "Claude Haiku 4.5, HTTPS"},
+              {"id": "cdn", "name": "jsDelivr CDN", "kind": "external", "tech": "vega, vega-lite, vega-embed"}
+            ]
+          }
+        ]
+      }
+    ],
+    "links": [
+      {"from": "analyst_user", "to": "api", "label": "Questions and reports, JSON and HTML over HTTP, no auth", "kind": "sync"},
+      {"from": "mcp_host", "to": "mcp", "label": "MCP tool calls with a bearer token", "kind": "sync"},
+      {"from": "cli", "to": "events", "label": "Analyst in-process, read-only SQL", "kind": "sync"},
+      {"from": "seeder", "to": "events", "label": "Writes the store once at image build", "kind": "bulk"},
+      {"from": "api", "to": "events", "label": "Read-only SQL through the in-process MCP server", "kind": "sync"},
+      {"from": "mcp", "to": "events", "label": "Read-only SQL", "kind": "sync"},
+      {"from": "api", "to": "ledger", "label": "Appends one line per model call", "kind": "sync"},
+      {"from": "api", "to": "reports", "label": "Saves and reads reports", "kind": "sync"},
+      {"from": "api", "to": "recordings", "label": "Reads in replay, writes in record", "kind": "sync"},
+      {"from": "api", "to": "openrouter", "label": "Chat completions in live or record mode", "kind": "sync"},
+      {"from": "cli", "to": "openrouter", "label": "Chat completions from make ask", "kind": "sync"},
+      {"from": "analyst_user", "to": "cdn", "label": "Browser loads chart scripts for an HTML report", "kind": "sync"}
+    ]
+  }
+}
