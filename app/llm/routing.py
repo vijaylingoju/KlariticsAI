@@ -5,7 +5,7 @@ dependency, and mypy checks them. Prices are USD per million tokens
 (OpenRouter's list price for the model).
 """
 
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 
 from app.llm.types import Feature
 
@@ -43,6 +43,32 @@ ROUTES: dict[Feature, Route] = {
     "investigate": Route("investigate", HAIKU, max_tokens=400, timeout_s=30),
     "narrate": Route("narrate", HAIKU, max_tokens=400, timeout_s=30),
 }
+
+
+def configure_model(
+    model: str | None,
+    input_per_m: float | None = None,
+    output_per_m: float | None = None,
+    timeout_s: float | None = None,
+) -> tuple[dict[Feature, Route], dict[str, Price]]:
+    """Routes and prices with every feature on `model` (LLM_MODEL); None keeps Haiku.
+
+    A model without a list price here needs one from the caller, so the budget
+    check never prices a paid model at zero. A local model is priced 0, 0.
+    `timeout_s` (LLM_TIMEOUT_S) replaces every route's timeout: a local model
+    on a laptop answers far slower than a hosted one.
+    """
+    routes = {f: replace(r, timeout_s=timeout_s or r.timeout_s) for f, r in ROUTES.items()}
+    if model is None:
+        return routes, dict(PRICES)
+    prices = dict(PRICES)
+    if input_per_m is not None and output_per_m is not None:
+        prices[model] = Price(input_per_m=input_per_m, output_per_m=output_per_m)
+    elif model not in prices:
+        raise ValueError(
+            f"LLM_MODEL {model} has no price: set LLM_PRICE_INPUT_PER_M and LLM_PRICE_OUTPUT_PER_M"
+        )
+    return {f: replace(r, model=model) for f, r in routes.items()}, prices
 
 
 def check_routes() -> None:

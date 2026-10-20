@@ -67,11 +67,12 @@ exercises every path the code takes, while what the real model says is graded in
 | TC-0102 | The ledger persists spend across restarts; replayed calls cost nothing | fake | `tests/llm/test_gateway.py` | AC-US-03-001-3 |
 | TC-0103 | A call whose worst case passes the limit is refused before sending | fake | `tests/llm/test_gateway.py` | AC-US-03-002-1 |
 | TC-0104 | Replay serves by request hash, never the network; a missing or changed request fails with its hash | replay | `tests/llm/test_gateway.py` | AC-US-03-003-1 |
-| TC-0105 | One retry on a transient failure; none on a rejected request | fake | `tests/llm/test_gateway.py` | AC-US-03-001-1 |
+| TC-0105 | One retry on a transient failure, after the wait the provider asks for (capped at 60 s); none on a rejected request | fake | `tests/llm/test_gateway.py` | AC-US-03-001-1 |
 | TC-0106 | A disabled feature is refused before sending | fake | `tests/llm/test_gateway.py` | AC-US-03-001-1 |
-| TC-0107 | OpenRouter request shape, tool-call parsing and status mapping | in-memory HTTP | `tests/llm/test_gateway.py` | AC-US-03-001-1, AC-US-03-001-2 |
+| TC-0107 | OpenRouter request shape, tool-call parsing and status mapping (a model's invalid tool call is retryable) | in-memory HTTP | `tests/llm/test_gateway.py` | AC-US-03-001-1, AC-US-03-001-2 |
 | TC-0108 | No model call anywhere outside `app/llm/` | source scan | `tests/llm/test_gateway.py` | AC-US-03-001-1 |
 | TC-0109 | Logs carry tokens and cost, never prompt or answer text | fake | `tests/llm/test_gateway.py` | AC-US-03-001-3 |
+| TC-0110 | LLM_MODEL and LLM_BASE_URL switch every route to another OpenAI-compatible model; an unpriced model is refused; a local server needs no key; OpenRouter-only fields go only to OpenRouter | in-memory HTTP | `tests/llm/test_gateway.py` | AC-US-03-001-1, AC-US-03-002-1 |
 | TC-0200 | Relative periods resolve against the last day of data | none | `tests/agent/test_periods.py` | AC-US-04-001-3 |
 | TC-0201 | Day-N cohort periods end where Day N is observable | none | `tests/agent/test_periods.py` | AC-US-04-001-3 |
 | TC-0202 | The default baseline is the equal-length range before | none | `tests/agent/test_periods.py` | AC-US-04-001-3 |

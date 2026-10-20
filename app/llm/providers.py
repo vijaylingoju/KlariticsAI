@@ -1,6 +1,7 @@
 """Where a request actually goes: OpenRouter, a recording of it, or both.
 
-- `OpenRouterProvider` calls the OpenAI-compatible chat API.
+- `OpenRouterProvider` calls the OpenAI-compatible chat API: OpenRouter by
+  default, or any compatible server at LLM_BASE_URL (Ollama, vLLM).
 - `ReplayProvider` serves a recorded response by request hash and never
   touches the network; CI and tests run on it.
 - `RecordingProvider` calls a live provider and saves what it returns, so
@@ -30,7 +31,13 @@ from app.llm.types import (
     Usage,
 )
 
-OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
+OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
+OPENROUTER_URL = f"{OPENROUTER_BASE_URL}/chat/completions"
+
+
+def chat_url(base_url: str | None) -> str:
+    """The chat-completions endpoint under an OpenAI-compatible base URL; None is OpenRouter."""
+    return f"{(base_url or OPENROUTER_BASE_URL).rstrip('/')}/chat/completions"
 
 
 class ProviderResult(BaseModel):
@@ -127,24 +134,60 @@ def parse_completion(payload: dict[str, Any]) -> ProviderResult:
     )
 
 
-class OpenRouterProvider:
-    """OpenRouter's chat-completions API. The key is read once, never logged."""
+def _rejection_reason(response: httpx.Response) -> dict[str, str | None]:
+    """The provider's error code and message, cut short; never the request."""
+    try:
+        body = response.json()
+    except ValueError:
+        body = None
+    error = body.get("error") if isinstance(body, dict) else None
+    if not isinstance(error, dict):
+        return {"reason": None, "detail": None}
+    reason = error.get("code") or error.get("type")
+    message = error.get("message")
+    return {
+        "reason": str(reason) if reason is not None else None,
+        "detail": str(message)[:200] if message is not None else None,
+    }
 
-    def __init__(self, api_key: str | None, client: httpx.AsyncClient | None = None) -> None:
+
+def _retry_after(response: httpx.Response) -> float | None:
+    """Seconds the provider asked us to wait (Retry-After), when it said so."""
+    try:
+        return float(response.headers.get("retry-after", ""))
+    except ValueError:
+        return None
+
+
+class OpenRouterProvider:
+    """OpenRouter or a compatible chat API. The key is read once, never logged."""
+
+    def __init__(
+        self,
+        api_key: str | None,
+        client: httpx.AsyncClient | None = None,
+        url: str = OPENROUTER_URL,
+    ) -> None:
         self._api_key = api_key
         self._client = client
+        self._url = url
 
     async def complete(self, req: LLMRequest, route: Route) -> ProviderResult:
         """POST the request; map transport and status failures to typed errors."""
-        if not self._api_key:
+        # A local server (Ollama) needs no key; OpenRouter always does.
+        if not self._api_key and self._url == OPENROUTER_URL:
             raise ProviderUnavailableError("OPENROUTER_API_KEY is not set")
         body = wire_body(req, route)
-        body["usage"] = {"include": True}
-        headers = {"Authorization": f"Bearer {self._api_key}", "X-Title": "Klaritics AI Analyst"}
+        if self._url == OPENROUTER_URL:
+            # OpenRouter-only: report the billed cost. Groq rejects unknown fields.
+            body["usage"] = {"include": True}
+        headers = {"X-Title": "Klaritics AI Analyst"}
+        if self._api_key:
+            headers["Authorization"] = f"Bearer {self._api_key}"
         client = self._client or httpx.AsyncClient()
         try:
             response = await client.post(
-                OPENROUTER_URL, json=body, headers=headers, timeout=route.timeout_s
+                self._url, json=body, headers=headers, timeout=route.timeout_s
             )
         except httpx.TimeoutException as exc:
             raise ProviderUnavailableError("provider timed out", timeout_s=route.timeout_s) from exc
@@ -156,10 +199,21 @@ class OpenRouterProvider:
             if self._client is None:
                 await client.aclose()
         if response.status_code == 429 or response.status_code >= 500:
-            raise ProviderUnavailableError("provider busy", status=response.status_code)
+            raise ProviderUnavailableError(
+                "provider busy",
+                status=response.status_code,
+                retry_after_s=_retry_after(response),
+            )
         if response.status_code >= 400:
+            reason = _rejection_reason(response)
+            if reason["reason"] == "tool_use_failed":
+                # Groq checks the model's tool call and refuses a malformed one; a new
+                # sample usually passes, so this is worth the gateway's one retry.
+                raise ProviderUnavailableError(
+                    "model wrote an invalid tool call", status=response.status_code, **reason
+                )
             raise ProviderRejectedError(
-                "provider rejected the request", status=response.status_code
+                "provider rejected the request", status=response.status_code, **reason
             )
         return parse_completion(response.json())
 

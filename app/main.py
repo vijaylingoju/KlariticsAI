@@ -23,9 +23,8 @@ from app.core.errors import register_exception_handlers
 from app.core.logging import configure_logging
 from app.core.middleware import RequestIdMiddleware
 from app.core.telemetry import configure_tracing
-from app.llm.gateway import Gateway, build_provider, killed_features
+from app.llm.gateway import gateway_from_settings, killed_features
 from app.llm.ledger import Ledger
-from app.llm.providers import ReplayProvider
 from app.mcp_server.server import build_server
 from app.reports.store import ReportStore
 
@@ -50,11 +49,9 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
         log.warning("store unavailable", path=str(settings.store_path), error=str(exc))
     if con is not None:
         service = AnalyticsService(con)
-        key = (
-            settings.openrouter_api_key.get_secret_value() if settings.openrouter_api_key else None
-        )
-        gateway = Gateway(
-            build_provider(settings.llm_mode, key, ReplayProvider(settings.llm_recordings_dir)),
+        gateway = gateway_from_settings(
+            settings,
+            settings.llm_mode,
             Ledger(settings.llm_ledger_path, settings.llm_budget_usd),
             disabled=killed_features(),
         )

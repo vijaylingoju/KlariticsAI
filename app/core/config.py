@@ -35,6 +35,15 @@ class Settings(BaseSettings):
     # serves saved answers only (tests and CI; no key, no network).
     llm_mode: Literal["live", "record", "replay"] = "live"
     openrouter_api_key: SecretStr | None = None
+    # Another OpenAI-compatible server and model, e.g. Ollama at
+    # http://localhost:11434/v1 with qwen2.5:7b. Unset means OpenRouter and Haiku.
+    llm_base_url: str | None = None
+    llm_model: str | None = None
+    # USD per million tokens for LLM_MODEL when it has no list price in code; 0 for local.
+    llm_price_input_per_m: float | None = Field(None, ge=0)
+    llm_price_output_per_m: float | None = Field(None, ge=0)
+    # Seconds per model call for every feature; unset keeps each route's own (30).
+    llm_timeout_s: float | None = Field(None, gt=0)
     llm_recordings_dir: Path = Path("evals/recordings")
     llm_ledger_path: Path = Path("data/llm_ledger.jsonl")
     llm_budget_usd: float = Field(8.0, gt=0)
